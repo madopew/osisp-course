@@ -6,11 +6,27 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
-        Title="Select process" Height="400" Width="400">
-    <StackPanel>
+        Title="Select process" Height="380" Width="400">
+    <StackPanel Margin="10">
         <ListBox Height="300"
+                 Margin="0 0 0 10"
+                 FontSize="14"
                  ItemsSource="{Binding Processes}" SelectedIndex="{Binding SelectedProcessIndex}" />
-        <Button Click="OkButton_OnClick">Ok</Button>
-        <Button Click="CancelButton_OnClick">Cancel</Button>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button FontSize="14"
+                    Width="100"
+                    Margin="0 0 5 0"
+                    Padding="5 0 5 0"
+                    Click="OkButton_OnClick">
+                Ok
+            </Button>
+            <Button FontSize="14"
+                    Width="100"
+                    Padding="5 0 5 0"
+                    Click="CancelButton_OnClick">
+                Cancel
+            </Button>
+        </StackPanel>
     </StackPanel>
 </Window>

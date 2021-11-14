@@ -99,5 +99,8 @@
         <Name>Core</Name>
       </ProjectReference>
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Resources" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

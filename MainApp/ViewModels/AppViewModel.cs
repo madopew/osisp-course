@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using Core;
 using MainApp.Annotations;
 using MainApp.Commands;
@@ -86,6 +87,8 @@ namespace MainApp.ViewModels
         {
             var bytes = BitConverter.GetBytes(value);
             Model.InsertValue(address, bytes.Take(size).ToArray());
+            MessageBox.Show("Value inserted successfully!", "Success.", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         public void OnProcessSelect(int pid)

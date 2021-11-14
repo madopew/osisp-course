@@ -6,10 +6,17 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
-        Title="Enter new value" Height="100" Width="200">
-    <StackPanel>
-        <TextBox Text="{Binding Value}" />
-        <Button Click="OkButton_OnClick">Ok</Button>
-        <Button Click="CancelButton_OnClick">Cancel</Button>
+        Title="Enter new value" Height="140" Width="300">
+    <StackPanel Margin="10">
+        <TextBox Padding="2" Margin="0 0 0 10" FontSize="16" Text="{Binding Value}" />
+        <Button Margin="0 0 0 5"
+                FontSize="14"
+                Click="OkButton_OnClick">
+            Ok
+        </Button>
+        <Button FontSize="14"
+                Click="CancelButton_OnClick">
+            Cancel
+        </Button>
     </StackPanel>
 </Window>
