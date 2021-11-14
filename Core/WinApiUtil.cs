@@ -2,7 +2,6 @@
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
 
 namespace Core.Util
 {
@@ -104,7 +103,7 @@ namespace Core.Util
         public static extern bool EnumProcessModules(IntPtr hProcess,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)] out IntPtr lphModule, uint cb,
             [MarshalAs(UnmanagedType.U4)] out uint lpcbNeeded);
-        
+
         [DllImport("psapi.dll")]
         public static extern uint GetModuleBaseNameA(IntPtr hProcess, IntPtr hModule, byte[] lpBaseName, uint nSize);
     }

@@ -70,17 +70,17 @@ namespace Core
                 var handle = WinApiUtil.OpenProcess(
                     WinApiUtil.ProcessAccess.QueryInformation | WinApiUtil.ProcessAccess.ProcessRead, false, pid);
 
-                if (handle != IntPtr.Zero)
-                {
-                    var result = new byte[1024];
-                    WinApiUtil.GetModuleBaseNameA(handle, IntPtr.Zero, result, (uint) result.Length);
-                    var name = Encoding.ASCII.GetString(result);
-                    var i = name.IndexOf('\0');
-                    return name.Substring(0, i);
-                }
-
-                return string.Empty;
+                return handle != IntPtr.Zero ? GetProcessName(handle) : string.Empty;
             });
+        }
+
+        public static string GetProcessName(IntPtr handle)
+        {
+            var result = new byte[1024];
+            WinApiUtil.GetModuleBaseNameA(handle, IntPtr.Zero, result, (uint)result.Length);
+            var name = Encoding.ASCII.GetString(result);
+            var i = name.IndexOf('\0');
+            return name.Substring(0, i);
         }
 
         private static long CalculateAlignment(byte[] value)

@@ -17,12 +17,15 @@ namespace Core
                 WinApiUtil.ProcessAccess.QueryInformation | WinApiUtil.ProcessAccess.ProcessRead |
                 WinApiUtil.ProcessAccess.ProcessWrite, false, pid);
             if (handle == IntPtr.Zero) throw new ArgumentException("Cannot open process", nameof(pid));
+            ProcessName = WinApiFacade.GetProcessName(handle);
         }
 
         ~ProgramObject()
         {
             if (handle != IntPtr.Zero) WinApiUtil.CloseHandle(handle);
         }
+        
+        public string ProcessName { get; }
 
         public bool BeenScanned { get; private set; }
 
@@ -45,6 +48,7 @@ namespace Core
         public void NextScan(byte[] value)
         {
             if (value is null) throw new ArgumentNullException(nameof(value));
+            if (value.Length != firstValue.Length) throw new ArgumentException("Cannot sequential scan different size");
             if (!BeenScanned) throw new InvalidOperationException("Cannot sequential scan new object");
             if (Addresses.Count == 0) throw new InvalidOperationException("Nothing to scan");
 
